@@ -1,0 +1,26 @@
+{
+  "name": "mmm-growatt-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MMM-Growatt-Stats.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mumblebaj/MMM-Growatt-Stats.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "Growatt"
+  ],
+  "author": "B Mumble",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mumblebaj/MMM-Growatt-Stats/issues"
+  },
+  "homepage": "https://github.com/mumblebaj/MMM-Growatt-Stats#readme",
+  "dependencies": {
+    "growatt": "^0.5.6"
+  }
+}

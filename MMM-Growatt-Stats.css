@@ -1,0 +1,112 @@
+#pvout_tab {
+    margin: 0;
+    padding: 0;
+    width: 66.6%;
+}
+
+div {
+    display: block;
+}
+
+.totalPan {
+    /* height: 100vh; */
+    /* width: 100vw; */
+    position: absolute;
+    color: #adb1c5;
+    /*            background-color: blue; */
+}
+
+/* .totalPan3 {
+    left: 45%; 
+    top: 5%;
+    right: 1%;
+    bottom: 5%;
+} */
+
+.totalPan .toptext {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 49px;
+    font-size: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.totalPan .toptext .img {
+    width: 88px;
+    height: 88px;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 100%;
+}
+
+.totalPan .img-energy {
+    background: url(images/textBg_1.png);
+}
+
+.totalPan .img-discharge {
+    background: url(images/batDischarge.png);
+}
+
+.totalPan .img-charge {
+    background: url(images/batCharge.png)
+}
+
+.totalPan .img-grid {
+    background: url(images/textBg_3.png);
+}
+
+.totalPan .img-home {
+    background: url(images/textBg_4.png);
+}
+
+.totalPan .toptext span {
+    display: block;
+    line-height: 12px;
+}
+
+.totalPan3>div {
+    float: left;
+    width: 33.3%;
+    height: 50%;
+    position: relative;
+    border-color: #e8e6e6;
+}
+
+.totalPan>div>div .half {
+    width: 50%;
+    text-align: center;
+    float: left;
+}
+
+.totalPan .text {
+    font-size: 15px;
+}
+
+.totalPan.many .val {
+    font-size: 1vw;
+}
+
+.totalPan .val {
+    vertical-align: middle;
+    color: #FFF;
+}
+
+.totalPan .unitBox {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    text-align: left;
+}
+
+p {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: arial;
+}
+
+.totalPan .unit {
+    color: #FFF;
+}
