@@ -56,7 +56,7 @@ Module.register("MMM-Growatt-Stats", {
 
         var self = this
         setInterval(function () {
-            self.getGrowattData()
+            self.getgrowattStatsData()
         }, nextUpdate)
     },
 
@@ -103,7 +103,7 @@ Module.register("MMM-Growatt-Stats", {
         half1.className = "half"
         const epvOne = document.createElement("span")
         epvOne.className = "val val_epvOne"
-        epvOne.innerHTML = this.growattData[0].epvToday
+        epvOne.innerHTML = this.growattStatsData[0].epvToday
         const unit_box = document.createElement("div")
         unit_box.className = "unitBox"
         const solar_today = document.createElement("p")
@@ -121,7 +121,7 @@ Module.register("MMM-Growatt-Stats", {
         half2.className = "half"
         const epvTwo = document.createElement("span")
         epvTwo.className = "val val_epvTwo"
-        let epvtotal = parseFloat(this.growattData[0].epvTotal) / 1000
+        let epvtotal = parseFloat(this.growattStatsData[0].epvTotal) / 1000
         epvTwo.innerHTML = parseFloat(epvtotal).toFixed(1)
         const unit_box1 = document.createElement("div")
         unit_box1.className = "unitBox"
@@ -130,7 +130,7 @@ Module.register("MMM-Growatt-Stats", {
         solar_total.innerHTML = "Total"
         const solar_total_unit = document.createElement("p")
         solar_total_unit.className = "unit"
-        if (this.growattData[0].epvTotal >= 1000) {
+        if (this.growattStatsData[0].epvTotal >= 1000) {
             solar_total_unit.innerHTML = "MWh"
         } else {
             solar_total_unit.innerHTML = "kWh"
@@ -162,7 +162,7 @@ Module.register("MMM-Growatt-Stats", {
         half3.className = "half"
         const storage_out_one = document.createElement("span")
         storage_out_one.className = "val val_storageOutOne"
-        storage_out_one.innerHTML = this.growattData[0].eDischargeToday
+        storage_out_one.innerHTML = this.growattStatsData[0].eDischargeToday
         const storage_unit_box = document.createElement("div")
         storage_unit_box.className = "unitBox"
         const storage_out_text = document.createElement("p")
@@ -180,7 +180,7 @@ Module.register("MMM-Growatt-Stats", {
         half4.className = "half"
         const storage_two = document.createElement("span")
         storage_two.className = "val val_storageOutTwo"
-        let dischargetotal = parseFloat(this.growattData[0].eDischargeTotal).toFixed(1) / 1000
+        let dischargetotal = parseFloat(this.growattStatsData[0].eDischargeTotal).toFixed(1) / 1000
         storage_two.innerHTML = parseFloat(dischargetotal).toFixed(1)
         const storage_two_box = document.createElement("div")
         storage_two_box.className = "unitBox"
@@ -189,7 +189,7 @@ Module.register("MMM-Growatt-Stats", {
         storage_two_text.innerHTML = "Total"
         const storage_two_unit = document.createElement("p")
         storage_two_unit.className = "unit"
-        if (this.growattData[0].eDischargeTotal >= 1000) {
+        if (this.growattStatsData[0].eDischargeTotal >= 1000) {
             storage_two_unit.innerHTML = "MWh"
         } else {
             storage_two_unit.innerHTML = "kWh"
@@ -220,7 +220,7 @@ Module.register("MMM-Growatt-Stats", {
         half5.className = "half"
         const charge_one = document.createElement("span")
         charge_one.className = "val val_ChargeOne"
-        charge_one.innerHTML = parseFloat(this.growattData[0].chargeToday).toFixed(1)
+        charge_one.innerHTML = parseFloat(this.growattStatsData[0].chargeToday).toFixed(1)
         const charge_one_box = document.createElement("div")
         charge_one_box.className = "unitBox"
         const charge_one_text = document.createElement("p")
@@ -238,7 +238,7 @@ Module.register("MMM-Growatt-Stats", {
         half6.className = "half"
         const charge_two = document.createElement("span")
         charge_two.className = "val val_chargeTwo"
-        let charge_two_total = parseFloat(this.growattData[0].chargeTotal) / 1000
+        let charge_two_total = parseFloat(this.growattStatsData[0].chargeTotal) / 1000
         charge_two.innerHTML = parseFloat(charge_two_total).toFixed(1)
         const charge_two_box = document.createElement("div")
         charge_two_box.className = "unitBox"
@@ -247,7 +247,7 @@ Module.register("MMM-Growatt-Stats", {
         charge_two_text.innerHTML = "Total"
         const charge_two_unit = document.createElement("p")
         charge_two_unit.className = "unit"
-        if (this.growattData[0].chargeTotal >= 1000) {
+        if (this.growattStatsData[0].chargeTotal >= 1000) {
             charge_two_unit.innerHTML = "MWh"
         } else {
             charge_two_unit.innerHTML = "kWh"
@@ -277,7 +277,7 @@ Module.register("MMM-Growatt-Stats", {
         half7.className = "half"
         const grid_one = document.createElement("span")
         grid_one.className = "val val_toGridOne"
-        grid_one.innerHTML = this.growattData[0].eToUserToday
+        grid_one.innerHTML = this.growattStatsData[0].eToUserToday
         const grid_one_box = document.createElement("div")
         grid_one_box.className = "unitBox"
         const grid_one_text = document.createElement("p")
@@ -295,7 +295,7 @@ Module.register("MMM-Growatt-Stats", {
         half8.className = "half"
         const grid_two = document.createElement("span")
         grid_two.className = "val val_toGridTwo"
-        grid_two.innerHTML = this.growattData[0].eToUserTotal
+        grid_two.innerHTML = this.growattStatsData[0].eToUserTotal
         const grid_two_box = document.createElement("div")
         grid_two_box.className = "unitBox"
         const grid_two_text = document.createElement("p")
@@ -329,7 +329,7 @@ Module.register("MMM-Growatt-Stats", {
         half9.className = "half"
         const home_one = document.createElement("span")
         home_one.className = "val val_loadOne"
-        home_one.innerHTML = this.growattData[0].useEnergyToday
+        home_one.innerHTML = this.growattStatsData[0].useEnergyToday
         const home_one_box = document.createElement("div")
         home_one_box.className = "unitBox"
         const home_one_text = document.createElement("p")
@@ -347,7 +347,7 @@ Module.register("MMM-Growatt-Stats", {
         half10.className = "half"
         const home_two = document.createElement("span")
         home_two.className = "val val_loadTwo"
-        home_two.innerHTML = this.growattData[0].useEnergyTotal
+        home_two.innerHTML = this.growattStatsData[0].useEnergyTotal
         const home_two_box = document.createElement("div")
         home_two_box.className = "unitBox"
         const home_two_text = document.createElement("p")

@@ -40,24 +40,24 @@ div {
     background-size: 100%;
 }
 
-.totalPan .img-energy {
-    background: url(images/textBg_1.png);
+.totalPan .img.img-energy {
+    background-image: url(images/textBg_1.png);
 }
 
-.totalPan .img-discharge {
-    background: url(images/batDischarge.png);
+.totalPan .img.img-discharge {
+    background-image: url(images/batDischarge.png);
 }
 
-.totalPan .img-charge {
-    background: url(images/batCharge.png)
+.totalPan .img.img-charge {
+    background-image: url(images/batCharge.png)
 }
 
-.totalPan .img-grid {
-    background: url(images/textBg_3.png);
+.totalPan .img.img-grid {
+    background-image: url(images/textBg_3.png);
 }
 
-.totalPan .img-home {
-    background: url(images/textBg_4.png);
+.totalPan /img.img-home {
+    background-image: url(images/textBg_4.png);
 }
 
 .totalPan .toptext span {
