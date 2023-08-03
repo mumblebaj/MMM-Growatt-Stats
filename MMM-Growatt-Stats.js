@@ -280,7 +280,7 @@ Module.register("MMM-Growatt-Stats", {
         toptext4.appendChild(grid_text)
 
         div8 = document.createElement("div")
-        div8 = className = "gwdiv"
+        div8.className = "gwdiv"
         const half7 = document.createElement("div")
         half7.className = "half"
         const grid_one = document.createElement("span")
