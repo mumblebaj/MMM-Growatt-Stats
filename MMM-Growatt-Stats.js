@@ -36,7 +36,7 @@ Module.register("MMM-Growatt-Stats", {
         Log.info('Resuming module ' + this.name);
         Log.debug('with config: ' + JSON.stringify(this.config));
         this.suspended = false;
-        this.updateWrapper(this.growattMinData);
+        this.updateStats(this.growattStatsData);
     },
 
     suspend: function () {
@@ -64,7 +64,7 @@ Module.register("MMM-Growatt-Stats", {
         var self = this;
         if (notification === "GROWATT_STATS_DATA") {
             this.growattStatsData = payload
-            this.updateStats(this.growattMinData)
+            this.updateStats(this.growattStatsData)
         }
     },
 
@@ -99,6 +99,7 @@ Module.register("MMM-Growatt-Stats", {
         top_text.appendChild(img_energy_text)
 
         const div1 = document.createElement("div")
+        div1.className = "gwdiv"
         const half1 = document.createElement("div")
         half1.className = "half"
         const epvOne = document.createElement("span")
@@ -148,6 +149,7 @@ Module.register("MMM-Growatt-Stats", {
         pvout.appendChild(div1)
 
         const div2 = document.createElement("div")
+        div2.className = "gwdiv"
         const top_text2 = document.createElement("div")
         top_text2.className = "toptext"
         const img_discharge = document.createElement("div")
@@ -157,7 +159,9 @@ Module.register("MMM-Growatt-Stats", {
         img_discharge_text.innerHTML = "Discharged"
         top_text2.appendChild(img_discharge)
         top_text2.appendChild(img_discharge_text)
+
         const div3 = document.createElement("div")
+        div3.className = "gwdiv"
         const half3 = document.createElement("div")
         half3.className = "half"
         const storage_out_one = document.createElement("span")
@@ -205,6 +209,7 @@ Module.register("MMM-Growatt-Stats", {
         div2.appendChild(div3)
 
         const div5 = document.createElement("div")
+        div5.className = "gwdiv"
         const toptext3 = document.createElement("div")
         toptext3.className = "toptext"
         const image_charge = document.createElement("div")
@@ -216,6 +221,7 @@ Module.register("MMM-Growatt-Stats", {
         toptext3.appendChild(charge_text)
 
         const div6 = document.createElement("div")
+        div6.className = "gwdiv"
         const half5 = document.createElement("div")
         half5.className = "half"
         const charge_one = document.createElement("span")
@@ -262,6 +268,7 @@ Module.register("MMM-Growatt-Stats", {
         div5.appendChild(div6)
 
         const div7 = document.createElement("div")
+        div7.className = "gwdiv"
         const toptext4 = document.createElement("div")
         toptext4.className = "toptext"
         const image_grid = document.createElement("div")
@@ -273,6 +280,7 @@ Module.register("MMM-Growatt-Stats", {
         toptext4.appendChild(grid_text)
 
         div8 = document.createElement("div")
+        div8 = className = "gwdiv"
         const half7 = document.createElement("div")
         half7.className = "half"
         const grid_one = document.createElement("span")
@@ -314,6 +322,7 @@ Module.register("MMM-Growatt-Stats", {
         div7.appendChild(div8)
 
         const div9 = document.createElement("div")
+        div9.className = "gwdiv"
         const toptext5 = document.createElement("div")
         toptext5.className = "toptext"
         const img_home = document.createElement("div")
@@ -325,6 +334,7 @@ Module.register("MMM-Growatt-Stats", {
         toptext5.appendChild(home_text)
 
         const div10 = document.createElement("div")
+        div10.className = "gwdiv"
         const half9 = document.createElement("div")
         half9.className = "half"
         const home_one = document.createElement("span")
