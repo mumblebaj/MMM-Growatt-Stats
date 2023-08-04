@@ -4,25 +4,25 @@
     width: 66.6%;
 }
 
-div {
+gwdiv {
     display: block;
 }
 
 .totalPan {
-    /* height: 100vh; */
-    /* width: 100vw; */
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
     position: absolute;
     color: #adb1c5;
-    /*            background-color: blue; */
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
 
-/* .totalPan3 {
-    left: 45%; 
-    top: 5%;
-    right: 1%;
-    bottom: 5%;
-} */
-
+.plantDet {
+    align-items: center;
+}
 .totalPan .toptext {
     padding-top: 15px;
     padding-bottom: 15px;

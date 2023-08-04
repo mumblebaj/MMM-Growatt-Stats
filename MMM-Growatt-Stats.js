@@ -84,6 +84,10 @@ Module.register("MMM-Growatt-Stats", {
         // wrapper.id = "growatt-stats-wrapper";
         wrapper.className = "totalPan totalPan3 many";
 
+        const plantdet = document.createElement("h2");
+        plantdet.className = "plantDet";
+        plantdet.innerHTML = this.growattStatsData[0].plantName
+
         const pvout = document.createElement("div")
         pvout.id = "pvout_tab"
 
@@ -279,7 +283,7 @@ Module.register("MMM-Growatt-Stats", {
         toptext4.appendChild(image_grid)
         toptext4.appendChild(grid_text)
 
-        div8 = document.createElement("div")
+        const div8 = document.createElement("div")
         div8.className = "gwdiv"
         const half7 = document.createElement("div")
         half7.className = "half"
