@@ -379,6 +379,7 @@ Module.register("MMM-Growatt-Stats", {
         div9.appendChild(toptext5)
         div9.appendChild(div10)
 
+        wrapper.appendChild(plantdet)
         wrapper.appendChild(pvout)
         wrapper.appendChild(div2)
         wrapper.appendChild(div5)
