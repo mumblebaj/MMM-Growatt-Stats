@@ -126,7 +126,7 @@ Module.register("MMM-Growatt-Stats", {
         half2.className = "half"
         const epvTwo = document.createElement("span")
         epvTwo.className = "val val_epvTwo"
-        let epvtotal = parseFloat(this.growattStatsData[0].epvTotal) / 1000
+        let epvtotal = parseFloat(this.growattStatsData[0].epvTotal)
         epvTwo.innerHTML = parseFloat(epvtotal).toFixed(1)
         const unit_box1 = document.createElement("div")
         unit_box1.className = "unitBox"
@@ -135,7 +135,7 @@ Module.register("MMM-Growatt-Stats", {
         solar_total.innerHTML = "Total"
         const solar_total_unit = document.createElement("p")
         solar_total_unit.className = "unit"
-        if (this.growattStatsData[0].epvTotal >= 1000) {
+        if (this.growattStatsData[0].growattType === "storage") {
             solar_total_unit.innerHTML = "MWh"
         } else {
             solar_total_unit.innerHTML = "kWh"
@@ -188,7 +188,7 @@ Module.register("MMM-Growatt-Stats", {
         half4.className = "half"
         const storage_two = document.createElement("span")
         storage_two.className = "val val_storageOutTwo"
-        let dischargetotal = parseFloat(this.growattStatsData[0].eDischargeTotal).toFixed(1) / 1000
+        let dischargetotal = parseFloat(this.growattStatsData[0].eDischargeTotal).toFixed(1)
         storage_two.innerHTML = parseFloat(dischargetotal).toFixed(1)
         const storage_two_box = document.createElement("div")
         storage_two_box.className = "unitBox"
@@ -197,7 +197,7 @@ Module.register("MMM-Growatt-Stats", {
         storage_two_text.innerHTML = "Total"
         const storage_two_unit = document.createElement("p")
         storage_two_unit.className = "unit"
-        if (this.growattStatsData[0].eDischargeTotal >= 1000) {
+        if (this.growattStatsData[0].growattType === "storage") {
             storage_two_unit.innerHTML = "MWh"
         } else {
             storage_two_unit.innerHTML = "kWh"
@@ -248,7 +248,7 @@ Module.register("MMM-Growatt-Stats", {
         half6.className = "half"
         const charge_two = document.createElement("span")
         charge_two.className = "val val_chargeTwo"
-        let charge_two_total = parseFloat(this.growattStatsData[0].chargeTotal) / 1000
+        let charge_two_total = parseFloat(this.growattStatsData[0].chargeTotal)
         charge_two.innerHTML = parseFloat(charge_two_total).toFixed(1)
         const charge_two_box = document.createElement("div")
         charge_two_box.className = "unitBox"
@@ -257,7 +257,7 @@ Module.register("MMM-Growatt-Stats", {
         charge_two_text.innerHTML = "Total"
         const charge_two_unit = document.createElement("p")
         charge_two_unit.className = "unit"
-        if (this.growattStatsData[0].chargeTotal >= 1000) {
+        if (this.growattStatsData[0].growattType === "storage") {
             charge_two_unit.innerHTML = "MWh"
         } else {
             charge_two_unit.innerHTML = "kWh"
@@ -279,7 +279,11 @@ Module.register("MMM-Growatt-Stats", {
         image_grid.className = "img img-grid"
         const grid_text = document.createElement("span")
         grid_text.className = "text"
-        grid_text.innerHTML = "Imported from Grid"
+        if (this.growattStatsData[0].growattType === "tlxh" || this.growattStatsData[0].growattType === "tlx") {
+            grid_text.innerHTML = "Exported to Grid"
+        } else {
+            grid_text.innerHTML = "Imported from Grid"
+        }
         toptext4.appendChild(image_grid)
         toptext4.appendChild(grid_text)
 
