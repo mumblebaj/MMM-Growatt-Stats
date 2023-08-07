@@ -53,3 +53,8 @@ git pull
 npm install
 
 ````
+## Change Log
+- 2023/08/07
+  - Update module to cater for different Inverter types as the different inverter types return different datasets.
+- Update Module version to v2
+
