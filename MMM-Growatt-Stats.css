@@ -80,11 +80,11 @@ gwdiv {
 }
 
 .totalPan .text {
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .totalPan.many .val {
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .totalPan .val {
