@@ -43,6 +43,33 @@ Add the module to the modules array in the `config/config.js` file:
 ````
 ![Example](images/image-1.png) 
 
+## CSS Changes
+You can apply your own styling for the module. 
+- Go to `~/MagicMirror/css` and you can add your styling customizations to the custom.css file.
+- In custom.css you can add the following to make the text values bigger
+
+````
+
+.MMM-Growatt-Stats .totalPan.many .val {
+    font-size: 1.5vw;
+}
+
+.MMM-Growatt-Stats .totalPan .text {
+    font-size: 20px;
+}
+
+````
+- To resize the images, add the following to custom.css
+
+````
+
+.MMM-Growatt-Stats .totalPan .toptext .img {
+    width: 75px;
+    height: 75px;
+}
+
+````
+
 ## Updating
 
 To update the module to the latest version, use your terminal to go to your MMM-Growatt-Stats module folder and type the following command:
