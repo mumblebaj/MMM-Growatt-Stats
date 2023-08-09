@@ -41,7 +41,7 @@ Add the module to the modules array in the `config/config.js` file:
                         }
 },
 ````
-![Example](images/image-1.png) 
+![Example](images/image-2.png) 
 
 ## CSS Changes
 You can apply your own styling for the module. 
