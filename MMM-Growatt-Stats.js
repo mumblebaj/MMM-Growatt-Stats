@@ -4,7 +4,8 @@ Module.register("MMM-Growatt-Stats", {
         title: "MMM-Growatt-Stats",
         updateInterval: 1000 * 60 * 60,
         username: "username",
-        password: "password"
+        password: "password",
+        mode: "dual"
     },
 
     getStyles: function () {
@@ -23,9 +24,10 @@ Module.register("MMM-Growatt-Stats", {
         Log.info(`Starting module: ${this.name}`);
 
         suspended = false;
-
-        this.getGrowattStatsData();
-        this.scheduleUpdate();
+        if (this.config.mode === "single") {
+            this.getGrowattStatsData();
+            this.scheduleUpdate();
+        }
     },
 
     stop: function () {
@@ -59,6 +61,14 @@ Module.register("MMM-Growatt-Stats", {
             self.getgrowattStatsData()
         }, nextUpdate)
     },
+
+    notificationReceived: function (notification, payload) {
+        var self = this;
+        if (notification === "GROWATT_STATS_DATA") {
+            this.growattStatsData = payload
+            this.updateStats(this.growattStatsData)
+        }
+    },    
 
     socketNotificationReceived: function (notification, payload) {
         var self = this;

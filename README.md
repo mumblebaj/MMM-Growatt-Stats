@@ -36,6 +36,7 @@ Add the module to the modules array in the `config/config.js` file:
             config: {
                 username: "username",
                 password: "password",
+                mode: "dual", // Options 'dual' mode and 'single' mode.
                 updateInterval: 1000*60*30 //Update every 30 minutes
                 
                         }
@@ -81,7 +82,11 @@ npm install
 
 ````
 ## Change Log
-- 2023/08/07
+### 2023/08/07
   - Update module to cater for different Inverter types as the different inverter types return different datasets.
 - Update Module version to v2
 
+### 2023/08/09
+- Add a dual and single mode to allow running [MMM-Growatt](https://github.com/mumblebaj/MMM-Growatt.git) and [MMM-Growatt-Stats](https://github.com/mumblebaj/MMM-Growatt-Stats.git) together.
+- Running in dual mode, MMM-Growatt-Stats now get it's data from MMM-Growatt.
+- Running in "single" mode the module will make it's own request to the Growatt server
