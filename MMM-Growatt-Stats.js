@@ -97,7 +97,7 @@ Module.register("MMM-Growatt-Stats", {
         img_energy.className = "img img-energy";
         const img_energy_text = document.createElement("span")
         img_energy_text.innerHTML = "Solar"
-        img_energy_text.className = "text"
+        img_energy_text.className = "img-text"
 
         top_text.appendChild(img_energy)
         top_text.appendChild(img_energy_text)
@@ -159,7 +159,7 @@ Module.register("MMM-Growatt-Stats", {
         const img_discharge = document.createElement("div")
         img_discharge.className = "img img-discharge";
         const img_discharge_text = document.createElement("span")
-        img_discharge_text.className = "text"
+        img_discharge_text.className = "img-text"
         img_discharge_text.innerHTML = "Discharged"
         top_text2.appendChild(img_discharge)
         top_text2.appendChild(img_discharge_text)
@@ -219,7 +219,7 @@ Module.register("MMM-Growatt-Stats", {
         const image_charge = document.createElement("div")
         image_charge.className = "img img-charge"
         const charge_text = document.createElement("span")
-        charge_text.className = "text"
+        charge_text.className = "img-text"
         charge_text.innerHTML = "Charged"
         toptext3.appendChild(image_charge)
         toptext3.appendChild(charge_text)
@@ -278,7 +278,7 @@ Module.register("MMM-Growatt-Stats", {
         const image_grid = document.createElement("div")
         image_grid.className = "img img-grid"
         const grid_text = document.createElement("span")
-        grid_text.className = "text"
+        grid_text.className = "img-text"
         if (this.growattStatsData[0].growattType === "tlxh" || this.growattStatsData[0].growattType === "tlx") {
             grid_text.innerHTML = "Exported to Grid"
         } else {
@@ -336,7 +336,7 @@ Module.register("MMM-Growatt-Stats", {
         const img_home = document.createElement("div")
         img_home.className = "img img-home"
         const home_text = document.createElement("span")
-        home_text.className = "text"
+        home_text.className = "img-text"
         home_text.innerHTML = "Load Consumption"
         toptext5.appendChild(img_home)
         toptext5.appendChild(home_text)
