@@ -1,6 +1,11 @@
 var NodeHelper = require('node_helper')
 var api = require('growatt')
 
+const servers = {
+    main: 'https://server.growatt.com',
+    us: 'https://server-us.growatt.com'
+}
+
 const options = {
     plantData: true,
     weather: false,
@@ -208,11 +213,15 @@ module.exports = NodeHelper.create({
     },
 
     getGrowattData: async function (payload) {
-        const growatt = new api({})
+
+        const server = payload.usServer ? servers.us : servers.main;
+
+        const growatt = new api({server: server})
+
         let login = await growatt.login(payload.username, payload.password).catch(e => {
             console.log(e)
         })
-        console.log('login: ', login)
+        console.log('MMM-Growatt-Stats login: ', login)
 
         let getAllPlantData = await growatt.getAllPlantData(options).catch(e => {
             console.log(e)
@@ -221,7 +230,7 @@ module.exports = NodeHelper.create({
         let logout = await growatt.logout().catch(e => {
             console.log(e)
         })
-        console.log('logout:', logout)
+        console.log('MMM-Growatt-Stats logout:', logout)
 
         var plantData = getAllPlantData;
 

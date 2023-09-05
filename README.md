@@ -36,7 +36,8 @@ Add the module to the modules array in the `config/config.js` file:
             config: {
                 username: "username",
                 password: "password",
-                mode: "dual", // Options 'dual' mode and 'single' mode.
+                usServer: true, // only used by US Registered users
+                mode: "dual", // Specify 'dual' when running https://github.com/mumblebaj/MMM-Growatt.git and https://github.com/mumblebaj/MMM-Growatt-Stats.git together else specify 'single'
                 updateInterval: 1000*60*30 //Update every 30 minutes
                 
                         }
@@ -90,3 +91,8 @@ npm install
 - Add a dual and single mode to allow running [MMM-Growatt](https://github.com/mumblebaj/MMM-Growatt.git) and [MMM-Growatt-Stats](https://github.com/mumblebaj/MMM-Growatt-Stats.git) together.
 - Running in dual mode, MMM-Growatt-Stats now get it's data from MMM-Growatt.
 - Running in "single" mode the module will make it's own request to the Growatt server
+
+### 2023/09/05
+- Had a request from user [ruralbrewer](https://github.com/ruralbrewer) to add support for [https://server-us.growatt.com](https://server-us.growatt.com).
+- Users in the US registered on the US Growatt Server are now able to use the module.
+- A new Config option  usServer: true must be added to the config/config.js. Users registered on the [https://server.growatt.com](https://server.growatt.com) need not add this option.
