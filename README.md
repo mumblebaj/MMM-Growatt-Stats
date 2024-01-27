@@ -4,7 +4,7 @@ A [MagicMirror²](https://magicmirror.builders) module to display Growatt Power 
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-![Example](images/image-1.png)
+![Example](images/screenshot.png)
 
 ## Dependencies
 - [growatt](https://www.npmjs.com/package/growatt)
@@ -83,6 +83,10 @@ npm install
 
 ````
 ## Change Log
+
+### 2024/01/27
+- Update module to use growatt v 0.7.1
+
 ### 2023/08/07
   - Update module to cater for different Inverter types as the different inverter types return different datasets.
 - Update Module version to v2
