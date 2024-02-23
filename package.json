@@ -1,6 +1,6 @@
 {
   "name": "mmm-growatt-stats",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Growat Stats module to display cumulitive stats for the period",
   "main": "MMM-Growatt-Stats.js",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "MagicMirror",
-    "Growatt"
+    "Growatt",
+    "SmartHome"
   ],
   "author": "B Mumble",
   "license": "MIT",
