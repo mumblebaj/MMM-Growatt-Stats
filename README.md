@@ -2,6 +2,7 @@
 
 A [MagicMirror²](https://magicmirror.builders) module to display Growatt Power Plant Status Data from [Growatt](https://server.growatt.com).
 
+[![Platform](https://img.shields.io/badge/platform-MagicMirror-informational)](https://MagicMirror.builders)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 ![Example](images/screenshot.png)
@@ -83,6 +84,9 @@ npm install
 
 ````
 ## Change Log
+
+### 2024/07/04
+- Update the version of growatt to v0.7.4 as there were some changes on growatt
 
 ### 2024/01/27
 - Update module to use growatt v 0.7.1

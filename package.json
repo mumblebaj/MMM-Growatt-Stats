@@ -1,6 +1,6 @@
 {
   "name": "mmm-growatt-stats",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Growat Stats module to display cumulitive stats for the period",
   "main": "MMM-Growatt-Stats.js",
   "scripts": {
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/mumblebaj/MMM-Growatt-Stats#readme",
   "dependencies": {
-    "growatt": "^0.7.1"
+    "growatt": "^0.7.4"
   }
 }
