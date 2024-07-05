@@ -374,7 +374,7 @@ Module.register("MMM-Growatt-Stats", {
         const half10 = document.createElement("div")
         half10.className = "half"
         const home_two = document.createElement("span")
-        home_two.className = "val val_loadTwo"
+        home_two.className = "val_text_2 val_loadTwo"
         home_two.innerHTML = this.growattStatsData[0].useEnergyTotal
         const home_two_box = document.createElement("div")
         home_two_box.className = "unitBox"

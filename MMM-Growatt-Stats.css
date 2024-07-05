@@ -83,6 +83,11 @@ gwdiv {
     font-size: 12px;
 }
 
+.totalPan .val_text_2 {
+    font-size: 1vw;
+    color: #FFF;
+}
+
 .totalPan.many .val {
     font-size: 1.6vw;
 }

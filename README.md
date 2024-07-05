@@ -85,6 +85,9 @@ npm install
 ````
 ## Change Log
 
+### 2024/07/05
+- Minor cosmetic changes made to Loadconsumption display. Made font size slightly smaller as it wraps currently with huge amounts
+
 ### 2024/07/04
 - Update the version of growatt to v0.7.4 as there were some changes on growatt
 
