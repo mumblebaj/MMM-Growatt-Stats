@@ -39,6 +39,7 @@ Add the module to the modules array in the `config/config.js` file:
                 password: "password",
                 usServer: true, // only used by US Registered users
                 mode: "dual", // Specify 'dual' when running https://github.com/mumblebaj/MMM-Growatt.git and https://github.com/mumblebaj/MMM-Growatt-Stats.git together else specify 'single'
+                debug: true, // Set to create a log of all data returned from Inverter
                 updateInterval: 1000*60*30 //Update every 30 minutes
                 
                         }
@@ -84,6 +85,9 @@ npm install
 
 ````
 ## Change Log
+
+### 2025/02/24
+- Add debug logging
 
 ### 2024/07/05
 - Minor cosmetic changes made to Loadconsumption display. Made font size slightly smaller as it wraps currently with huge amounts

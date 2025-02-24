@@ -1,5 +1,7 @@
 var NodeHelper = require('node_helper')
 var api = require('growatt')
+var fs = require('fs')
+var os = require('os')
 
 const servers = {
     main: 'https://server.growatt.com',
@@ -16,6 +18,8 @@ const options = {
     historyLast: true,
     historyAll: false
 }
+
+var growattlog = `${__dirname}/growatt.log`;
 
 module.exports = NodeHelper.create({
     requiresVersion: '2.23.0',
@@ -233,6 +237,12 @@ module.exports = NodeHelper.create({
         console.log('MMM-Growatt-Stats logout:', logout)
 
         var plantData = getAllPlantData;
+
+        if (payload.debug === true) {
+            fs.appendFile(growattlog, JSON.stringify(plantData, null, 2) + os.EOL, function (err) {
+              if (err) throw err;
+            })
+          }
 
         var parserResponse = this.deconstructPlantData(plantData, payload)
 
