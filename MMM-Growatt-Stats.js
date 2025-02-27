@@ -289,7 +289,7 @@ Module.register("MMM-Growatt-Stats", {
         image_grid.className = "img img-grid"
         const grid_text = document.createElement("span")
         grid_text.className = "img-text"
-        if (this.growattStatsData[0].growattType === "tlxh" || this.growattStatsData[0].growattType === "tlx") {
+        if (this.growattStatsData[0].growattType === "tlxh" && this.growattStatusData[0].exportedToGridToday > 0 || this.growattStatsData[0].growattType === "tlx") {
             grid_text.innerHTML = "Exported to Grid"
         } else {
             grid_text.innerHTML = "Imported from Grid"
@@ -303,7 +303,13 @@ Module.register("MMM-Growatt-Stats", {
         half7.className = "half"
         const grid_one = document.createElement("span")
         grid_one.className = "val val_toGridOne"
-        grid_one.innerHTML = this.growattStatsData[0].eToUserToday
+        if (this.growattStatsData[0].exportedToGridToday > 0) {
+            grid_one.innerHTML = this.growattStatsData[0].exportedToGridToday
+        } if (this.growattStatsData[0].exportedToGridToday <= 0) {
+            grid_one.innerHTML = this.growattStatsData[0].importedFromGridToday
+        } else {
+            grid_one.innerHTML = this.growattStatsData[0].eToUserToday
+        }
         const grid_one_box = document.createElement("div")
         grid_one_box.className = "unitBox"
         const grid_one_text = document.createElement("p")
@@ -321,7 +327,13 @@ Module.register("MMM-Growatt-Stats", {
         half8.className = "half"
         const grid_two = document.createElement("span")
         grid_two.className = "val val_toGridTwo"
-        grid_two.innerHTML = this.growattStatsData[0].eToUserTotal
+        if (this.growattStatsData[0].exportedToGridTotal > 0) {
+            grid_two.innerHTML = this.growattStatsData[0].exportedToGridTotal
+        } if (this.growattStatsData[0].exportedToGridTotal <= 0) {
+            grid_two.innerHTML = this.growattStatsData[0].importedFromGridTotal
+        } else {
+            grid_two.innerHTML = this.growattStatsData[0].eToUserTotal
+        }
         const grid_two_box = document.createElement("div")
         grid_two_box.className = "unitBox"
         const grid_two_text = document.createElement("p")

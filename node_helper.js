@@ -102,8 +102,10 @@ module.exports = NodeHelper.create({
                     let eselfTotal = data[0].data.devicesData[0].data.historyLast.eselfTotal;
                     let esystemToday = data[0].data.devicesData[0].data.historyLast.esystemToday;
                     let esystemTotal = data[0].data.devicesData[0].data.historyLast.esystemTotal;
-                    let exportedToGridToday = parseInt(esystemToday) - parseInt(eselfToday);
-                    let exportedToGridTotal = parseInt(esystemTotal) - parseInt(eselfTotal);
+                    let importedFromGridToday = data[0].data.devicesData[0].data.statsData.pactouser;
+                    let importedFromGridTotal = data[0].data.devicesData[0].data.historyLast.pacToUserTotal;
+                    let exportedToGridToday = data[0].data.devicesData[0].data.statusData.pactogrid; //data[0].data.devicesData[0].data.statusData.pacstouser;
+                    let exportedToGridTotal = data[0].data.devicesData[0].data.historyLast.pacToGridTotal;
                     plantDataFiltered.push({
                         "growattType": "tlxh",
                         "plantName": data[0].data.plantName,
@@ -119,6 +121,8 @@ module.exports = NodeHelper.create({
                         "chargeTotal": data[0].data.devicesData[0].data.historyLast.echargeTotal,
                         "eDischargeTotal": data[0].data.devicesData[0].data.historyLast.edischargeTotal,
                         "eDischargeToday": data[0].data.devicesData[0].data.historyLast.edischargeToday,
+                        "importedFromGridToday": importedFromGridToday,
+                        "importedFromGridTotal": importedFromGridTotal,
                         "eToUserTotal": exportedToGridTotal,
                         "eToUserToday": exportedToGridToday,
                         "epvToday": epvToday,
