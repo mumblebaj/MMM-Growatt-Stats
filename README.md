@@ -43,7 +43,7 @@ Add the module to the modules array in the `config/config.js` file:
                 updateInterval: 1000*60*30 //Update every 30 minutes
                 
                         }
-},
+        },
 ````
 ![Example](images/image-2.png) 
 
