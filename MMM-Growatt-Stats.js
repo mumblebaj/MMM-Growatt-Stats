@@ -64,6 +64,9 @@ Module.register("MMM-Growatt-Stats", {
 
     notificationReceived: function (notification, payload) {
         var self = this;
+        if (this.config.debug === true) {
+            Log.log('MMM-Growatt-Stats data received:', payload)
+        }
         if (notification === "GROWATT_STATS_DATA") {
             this.growattStatsData = payload
             this.updateStats(this.growattStatsData)
@@ -72,6 +75,9 @@ Module.register("MMM-Growatt-Stats", {
 
     socketNotificationReceived: function (notification, payload) {
         var self = this;
+        if (this.config.debug === true) {
+            Log.log('MMM-Growatt-Stats data received:', payload)
+        }
         if (notification === "GROWATT_STATS_DATA") {
             this.growattStatsData = payload
             this.updateStats(this.growattStatsData)
