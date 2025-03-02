@@ -124,6 +124,8 @@ module.exports = NodeHelper.create({
                         "eDischargeToday": data[0].data.devicesData[0].data.historyLast.edischargeToday,
                         "importedFromGridToday": importedFromGridToday,
                         "importedFromGridTotal": importedFromGridTotal,
+						"exportedToGridToday": exportedToGridToday,
+						"exportedToGridTotal": exportedToGridTotal,
                         "eToUserTotal": exportedToGridTotal,
                         "eToUserToday": exportedToGridToday,
                         "epvToday": epvToday,

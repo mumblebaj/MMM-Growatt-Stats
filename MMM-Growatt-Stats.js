@@ -310,13 +310,19 @@ Module.register("MMM-Growatt-Stats", {
         const grid_one = document.createElement("span")
         grid_one.className = "val val_toGridOne"
         let importedFromGridToday = parseFloat(this.growattStatsData[0].importedFromGridToday)
+        let eToUserToday = parseFloat(this.growattStatsData[0].eToUserToday)
         if (this.growattStatsData[0].exportedToGridToday > 0) {
             grid_one.innerHTML = this.growattStatsData[0].exportedToGridToday
         } if (this.growattStatsData[0].importedFromGridToday > 0) {
             grid_one.innerHTML = parseFloat(importedFromGridToday).toFixed(2)
             //grid_one.innerHTML = this.growattStatsData[0].importedFromGridToday
         } else {
-            grid_one.innerHTML = this.growattStatsData[0].eToUserToday
+            if (this.growattStatsData[0].eToUserToday >= 1000) {
+                let eusertoday = eToUserToday / 1000
+                parseFloat(eusertoday).toFixed(2)
+            } else {
+                grid_one.innerHTML = this.growattStatsData[0].eToUserToday
+            }
         }
         const grid_one_box = document.createElement("div")
         grid_one_box.className = "unitBox"
@@ -325,7 +331,11 @@ Module.register("MMM-Growatt-Stats", {
         grid_one_text.innerHTML = "Today"
         const grid_one_unit = document.createElement("p")
         grid_one_unit.className = "unit"
-        grid_one_unit.innerHTML = "kWh"
+        if (this.growattStatsData[0].exportedToGridToday >= 1000 || this.growattStatsData[0].importedFromGridToday >= 1000 || this.growattStatsData[0].eToUserToday >= 1000) {
+            grid_one_unit.innerHTML = "MWh"
+        } else {
+            grid_one_unit.innerHTML = "kWh"
+        }
         grid_one_box.appendChild(grid_one_text)
         grid_one_box.appendChild(grid_one_unit)
         half7.appendChild(grid_one)
@@ -336,13 +346,19 @@ Module.register("MMM-Growatt-Stats", {
         const grid_two = document.createElement("span")
         grid_two.className = "val val_toGridTwo"
         let importedFromGridTotal = parseFloat(this.growattStatsData[0].importedFromGridTotal)
+        let eToUserTotal = parseFloat(this.growattStatsData[0].eToUserTotal)
         if (this.growattStatsData[0].exportedToGridTotal > 0) {
             grid_two.innerHTML = this.growattStatsData[0].exportedToGridTotal
         } if (this.growattStatsData[0].importedFromGridTotal > 0) {
             grid_two.innerHTML = parseFloat(importedFromGridTotal).toFixed(2)
             //grid_two.innerHTML = this.growattStatsData[0].importedFromGridTotal
         } else {
-            grid_two.innerHTML = this.growattStatsData[0].eToUserTotal
+            if (this.growattStatsData[0].eToUserTotal >= 1000) {
+                let eusertotal = eToUserTotal / 1000
+                grid_two.innerHTML = parseFloat(eusertotal).toFixed(2)
+            } else {
+                grid_two.innerHTML = this.growattStatsData[0].eToUserTotal
+            }
         }
         const grid_two_box = document.createElement("div")
         grid_two_box.className = "unitBox"
