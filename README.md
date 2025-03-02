@@ -86,6 +86,9 @@ npm install
 ````
 ## Change Log
 
+### 2025/03/02
+- Fix tlxh stats
+
 ### 2025/02/24
 - Add debug logging
 

@@ -393,7 +393,13 @@ Module.register("MMM-Growatt-Stats", {
         half10.className = "half"
         const home_two = document.createElement("span")
         home_two.className = "val_text_2 val_loadTwo"
+        let useEnergyTotal = parseFloat(this.growattStatsData[0].useEnergyTotal)
+		if (this.growattStatsData[0].useEnergyTotal >= 1000) {
+			let useenergytotal = useEnergyTotal / 1000
+			home_two.innerHTML = parseFloat(useenergytotal).toFixed(2)
+		} else {
         home_two.innerHTML = this.growattStatsData[0].useEnergyTotal
+		}
         const home_two_box = document.createElement("div")
         home_two_box.className = "unitBox"
         const home_two_text = document.createElement("p")
@@ -401,7 +407,11 @@ Module.register("MMM-Growatt-Stats", {
         home_two_text.innerHTML = "Total"
         const home_two_unit = document.createElement("p")
         home_two_unit.className = "unit"
+        if (this.growattStatsData[0].useEnergyTotal >= 1000){
+			home_two_unit.innerHTML = "MWh"
+		} else {
         home_two_unit.innerHTML = "kWh"
+		}
         home_two_box.appendChild(home_two_text)
         home_two_box.appendChild(home_two_unit)
         half10.appendChild(home_two)

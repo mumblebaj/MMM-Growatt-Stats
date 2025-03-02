@@ -100,10 +100,11 @@ module.exports = NodeHelper.create({
                     let epvToday = parseInt(epv1Today) + parseInt(epv2Today) + parseInt(epv3Today) + parseInt(epv4Today);
                     let eselfToday = data[0].data.devicesData[0].data.historyLast.eselfToday;
                     let eselfTotal = data[0].data.devicesData[0].data.historyLast.eselfTotal;
+                    let elocalLoadToday = data[0].data.devicesData[0].data.historyLast.elocalLoadToday;
                     let esystemToday = data[0].data.devicesData[0].data.historyLast.esystemToday;
                     let esystemTotal = data[0].data.devicesData[0].data.historyLast.esystemTotal;
-                    let importedFromGridToday = data[0].data.devicesData[0].data.statusData.pactouser;
-                    let importedFromGridTotal = data[0].data.devicesData[0].data.historyLast.pacToUserTotal;
+                    let importedFromGridToday = data[0].data.devicesData[0].data.statusData.pactouser / 1000;
+                    let importedFromGridTotal = elocalLoadToday - eselfToday;
                     let exportedToGridToday = data[0].data.devicesData[0].data.statusData.pactogrid; //data[0].data.devicesData[0].data.statusData.pacstouser;
                     let exportedToGridTotal = data[0].data.devicesData[0].data.historyLast.pacToGridTotal;
                     plantDataFiltered.push({
@@ -127,7 +128,7 @@ module.exports = NodeHelper.create({
                         "eToUserToday": exportedToGridToday,
                         "epvToday": epvToday,
                         "epvTotal": data[0].data.devicesData[0].data.historyLast.epvTotal
-                    })
+                    }) 
                 } else if (devices[sn].growattType === "tlx") {
                     devicesData.push({
                         sn: sn,
@@ -224,12 +225,12 @@ module.exports = NodeHelper.create({
 
         const server = payload.usServer ? servers.us : servers.main;
 
-        const growatt = new api({server: server})
+        const growatt = new api({ server: server })
 
         let login = await growatt.login(payload.username, payload.password).catch(e => {
             console.log(e)
         })
-        console.log('MMM-Growatt-Stats login: ', login)
+        //console.log('MMM-Growatt-Stats login: ', login)
 
         let getAllPlantData = await growatt.getAllPlantData(options).catch(e => {
             console.log(e)
@@ -238,16 +239,16 @@ module.exports = NodeHelper.create({
         let logout = await growatt.logout().catch(e => {
             console.log(e)
         })
-        console.log('MMM-Growatt-Stats logout:', logout)
+        //console.log('MMM-Growatt-Stats logout:', logout)
 
         var plantData = getAllPlantData;
 
         if (payload.debug === true) {
             fs.appendFile(growattlog, JSON.stringify(plantData, null, 2) + os.EOL, function (err) {
-              if (err) throw err;
+                if (err) throw err;
             })
-          }
-
+        }
+       
         var parserResponse = this.deconstructPlantData(plantData, payload)
 
         var growattDataParsed = plantDataFiltered;
