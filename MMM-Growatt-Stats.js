@@ -295,7 +295,7 @@ Module.register("MMM-Growatt-Stats", {
         image_grid.className = "img img-grid"
         const grid_text = document.createElement("span")
         grid_text.className = "img-text"
-        if (this.growattStatsData[0].growattType === "tlxh" && this.growattStatusData[0].exportedToGridToday > 0 || this.growattStatsData[0].growattType === "tlx") {
+        if (this.growattStatsData[0].growattType === "tlxh" && this.growattStatsData[0].exportedToGridToday > 0 || this.growattStatsData[0].growattType === "tlx") {
             grid_text.innerHTML = "Exported to Grid"
         } else {
             grid_text.innerHTML = "Imported from Grid"
