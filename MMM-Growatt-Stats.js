@@ -367,7 +367,7 @@ Module.register("MMM-Growatt-Stats", {
         grid_two_text.innerHTML = "Total"
         const grid_two_unit = document.createElement("p")
         grid_two_unit.className = "unit"
-        if (this.growattStatsData[0].importedFromGridTotal >= 1000) {
+        if (this.growattStatsData[0].eToUserTotal >= 1000) {
             grid_two_unit.innerHTML = "MWh"
         } else {
             grid_two_unit.innerHTML = "kWh"
