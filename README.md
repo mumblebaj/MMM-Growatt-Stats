@@ -88,6 +88,9 @@ npm install
 ````
 ## Change Log
 
+### 2025/06/10 v2.1.0
+- Update growatt module to latest
+
 ### 2025/03/02
 - Fix tlxh stats
 
