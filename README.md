@@ -88,6 +88,13 @@ npm install
 ````
 ## Change Log
 
+### 2025/06/25 v2.2.0
+#### You do not have to upgrade to this latest version unless your current version is no longer working.
+- Refactor node_helper code
+- Improve logic
+- Add new helper functions
+- Add a retry for login and getAllPlantData
+
 ### 2025/06/10 v2.1.0
 - Update growatt module to latest
 

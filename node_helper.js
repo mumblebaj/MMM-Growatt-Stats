@@ -28,234 +28,225 @@ module.exports = NodeHelper.create({
         console.log('Starting node helper for ' + this.name)
     },
 
-    deconstructPlantData: function (d, payload) {
-        plantDataFiltered = [];
+    deconstructPlantData: function (rawData, payload) {
+        let plantDataFiltered = [];
 
-        let keys = "";
-        let deviceSerial = "";
-        let data = [];
-
-        keys = Object.keys(d);
-
-        keys.forEach(key => {
-            let {
+        Object.entries(rawData).forEach(([plantId, plantInfo]) => {
+            const {
                 devices,
-                ...rest
-            } = d[key];
-            deviceSerial = Object.keys(devices);
-            let devicesData = [];
-            deviceSerial.forEach(sn => {
+                ...plantMeta
+            } = plantInfo;
 
-                if (devices[sn].growattType === "storage") {
-                    devicesData.push({
-                        sn: sn,
-                        data: devices[sn],
-                    });
-                    data.push({
-                        plantid: key,
-                        data: {
-                            ...rest,
-                            devicesData
-                        }
-                    })
-                    let epvTotal = parseInt(data[0].data.devicesData[0].data.totalData.epvTotal) / 1000;
-                    let dischargeTotal = parseInt(data[0].data.devicesData[0].data.totalData.eDischargeTotal) / 1000;
-                    let chargeTotal = parseInt(data[0].data.devicesData[0].data.totalData.chargeTotal) / 1000;
-                    plantDataFiltered.push({
-                        "growattType": "storage",
-                        "plantName": data[0].data.plantName,
-                        "country": data[0].data.plantData.country,
-                        "city": data[0].data.plantData.city,
-                        "accountName": data[0].data.plantData.accountName,
-                        "inverterPower": data[0].data.plantData.nominalPower,
-                        "treesSaved": data[0].data.plantData.tree,
-                        "coalSaved": data[0].data.plantData.coal,
-                        "useEnergyToday": data[0].data.devicesData[0].data.totalData.useEnergyToday,
-                        "useEnergyTotal": data[0].data.devicesData[0].data.totalData.useEnergyTotal,
-                        "chargeToday": data[0].data.devicesData[0].data.totalData.chargeToday,
-                        "chargeTotal": chargeTotal,
-                        "eDischargeTotal": dischargeTotal,
-                        "eDischargeToday": data[0].data.devicesData[0].data.totalData.eDischargeToday,
-                        "eToUserTotal": data[0].data.devicesData[0].data.totalData.eToUserTotal,
-                        "eToUserToday": data[0].data.devicesData[0].data.totalData.eToUserToday,
-                        "epvToday": data[0].data.devicesData[0].data.totalData.epvToday,
-                        "epvTotal": epvTotal
-                    })
-                } else if (devices[sn].growattType === "tlxh") {
-                    devicesData.push({
-                        sn: sn,
-                        data: devices[sn],
-                    });
-                    data.push({
-                        plantid: key,
-                        data: {
-                            ...rest,
-                            devicesData
-                        }
-                    })
-                    let epv1Today = data[0].data.devicesData[0].data.historyLast.epv1Today;
-                    let epv2Today = data[0].data.devicesData[0].data.historyLast.epv2Today;
-                    let epv3Today = data[0].data.devicesData[0].data.historyLast.epv3Today;
-                    let epv4Today = data[0].data.devicesData[0].data.historyLast.epv4Today;
-                    let epvToday = parseInt(epv1Today) + parseInt(epv2Today) + parseInt(epv3Today) + parseInt(epv4Today);
-                    let eselfToday = data[0].data.devicesData[0].data.historyLast.eselfToday;
-                    let eselfTotal = data[0].data.devicesData[0].data.historyLast.eselfTotal;
-                    let elocalLoadToday = data[0].data.devicesData[0].data.historyLast.elocalLoadToday;
-                    let esystemToday = data[0].data.devicesData[0].data.historyLast.esystemToday;
-                    let esystemTotal = data[0].data.devicesData[0].data.historyLast.esystemTotal;
-                    let importedFromGridToday = data[0].data.devicesData[0].data.statusData.pactouser / 1000;
-                    let importedFromGridTotal = elocalLoadToday - eselfToday;
-                    let exportedToGridToday = data[0].data.devicesData[0].data.statusData.pactogrid; //data[0].data.devicesData[0].data.statusData.pacstouser;
-                    let exportedToGridTotal = data[0].data.devicesData[0].data.historyLast.pacToGridTotal;
-                    plantDataFiltered.push({
-                        "growattType": "tlxh",
-                        "plantName": data[0].data.plantName,
-                        "country": data[0].data.plantData.country,
-                        "city": data[0].data.plantData.city,
-                        "accountName": data[0].data.plantData.accountName,
-                        "inverterPower": data[0].data.plantData.nominalPower,
-                        "treesSaved": data[0].data.plantData.tree,
-                        "coalSaved": data[0].data.plantData.coal,
-                        "useEnergyToday": data[0].data.devicesData[0].data.historyLast.elocalLoadToday,
-                        "useEnergyTotal": data[0].data.devicesData[0].data.historyLast.elocalLoadTotal,
-                        "chargeToday": data[0].data.devicesData[0].data.historyLast.echargeToday,
-                        "chargeTotal": data[0].data.devicesData[0].data.historyLast.echargeTotal,
-                        "eDischargeTotal": data[0].data.devicesData[0].data.historyLast.edischargeTotal,
-                        "eDischargeToday": data[0].data.devicesData[0].data.historyLast.edischargeToday,
-                        "importedFromGridToday": importedFromGridToday,
-                        "importedFromGridTotal": importedFromGridTotal,
-						"exportedToGridToday": exportedToGridToday,
-						"exportedToGridTotal": exportedToGridTotal,
-                        "eToUserTotal": exportedToGridTotal,
-                        "eToUserToday": exportedToGridToday,
-                        "epvToday": epvToday,
-                        "epvTotal": data[0].data.devicesData[0].data.historyLast.epvTotal
-                    }) 
-                } else if (devices[sn].growattType === "tlx") {
-                    devicesData.push({
-                        sn: sn,
-                        data: devices[sn],
-                    });
+            Object.entries(devices).forEach(([sn, device]) => {
+                let result = null;
 
-                    data.push({
-                        plantid: key,
-                        data: {
-                            ...rest,
-                            devicesData
-                        }
-                    })
-                    let epv1Today = data[0].data.devicesData[0].data.historyLast.epv1Today;
-                    let epv2Today = data[0].data.devicesData[0].data.historyLast.epv2Today;
-                    let epv3Today = data[0].data.devicesData[0].data.historyLast.epv3Today;
-                    let epv4Today = data[0].data.devicesData[0].data.historyLast.epv4Today;
-                    let epvToday = parseInt(epv1Today) + parseInt(epv2Today) + parseInt(epv3Today) + parseInt(epv4Today);
-                    let eselfToday = data[0].data.devicesData[0].data.historyLast.eselfToday;
-                    let eselfTotal = data[0].data.devicesData[0].data.historyLast.eselfTotal;
-                    let esystemToday = data[0].data.devicesData[0].data.historyLast.esystemToday;
-                    let esystemTotal = data[0].data.devicesData[0].data.historyLast.esystemTotal;
-                    let exportedToGridToday = parseInt(esystemToday) - parseInt(eselfToday);
-                    let exportedToGridTotal = parseInt(esystemTotal) - parseInt(eselfTotal);
-                    plantDataFiltered.push({
-                        "growattType": "tlx",
-                        "plantName": data[0].data.plantName,
-                        "country": data[0].data.plantData.country,
-                        "city": data[0].data.plantData.city,
-                        "accountName": data[0].data.plantData.accountName,
-                        "inverterPower": data[0].data.plantData.nominalPower,
-                        "treesSaved": data[0].data.plantData.tree,
-                        "coalSaved": data[0].data.plantData.coal,
-                        "useEnergyToday": data[0].data.devicesData[0].data.historyLast.elocalLoadToday,
-                        "useEnergyTotal": data[0].data.devicesData[0].data.historyLast.elocalLoadTotal,
-                        "chargeToday": data[0].data.devicesData[0].data.historyLast.echargeToday,
-                        "chargeTotal": data[0].data.devicesData[0].data.historyLast.echargeTotal,
-                        "eDischargeTotal": data[0].data.devicesData[0].data.historyLast.edischargeTotal,
-                        "eDischargeToday": data[0].data.devicesData[0].data.historyLast.edischargeToday,
-                        "eToUserTotal": exportedToGridTotal,
-                        "eToUserToday": exportedToGridToday,
-                        "epvToday": epvToday,
-                        "epvTotal": data[0].data.devicesData[0].data.historyLast.epvTotal
-                    })
-                } else if (devices[sn].growattType === "mix") {
-                    devicesData.push({
-                        sn: sn,
-                        data: devices[sn],
-                    });
+                switch (device.growattType) {
+                case 'storage':
+                    result = this._parseStorage(plantMeta, sn, device);
+                    break;
+                case 'tlxh':
+                case 'tlx':
+                case 'mix':
+                    result = this._parseInverterWithHistory(plantMeta, sn, device, device.growattType);
+                    break;
+                case 'noah':
+                    result = this._parseNoah(plantMeta, sn, device);
+                    break;
+                default:
+                    console.warn(`Inverter type '${device.growattType}' not supported. Please log a call at https://github.com/mumblebaj/MMM-Growatt/issues`);
+                }
 
-                    data.push({
-                        plantid: key,
-                        data: {
-                            ...rest,
-                            devicesData
-                        }
-                    })
-                } else if (devices[sn].growattType === "spa") {
-                    devicesData.push({
-                        sn: sn,
-                        data: devices[sn],
-                    });
-
-                    data.push({
-                        plantid: key,
-                        data: {
-                            ...rest,
-                            devicesData
-                        }
-                    })
-                } else if (devices[sn].growattType === "hps") {
-                    devicesData.push({
-                        sn: sn,
-                        data: devices[sn],
-                    });
-
-                    data.push({
-                        plantid: key,
-                        data: {
-                            ...rest,
-                            devicesData
-                        }
-                    })
-                } else {
-                    console.log("Inverter not yet supported. Please log a call at module Github page, https://github.com/mumblebaj/MMM-Growatt/issues")
+                if (result) {
+                    plantDataFiltered.push(result);
                 }
             });
-        })
+        });
 
         return plantDataFiltered;
     },
 
-    getGrowattData: async function (payload) {
+    /**
+     * Parses 'storage' type inverter data
+     */
+    _parseStorage: function (meta, sn, device) {
+        const batPower = device?.statusData?.batPower || 0;
+        const charging = batPower <= 0 ? batPower : 0;
+        const discharging = batPower > 0 ? batPower : 0;
 
+        return {
+            growattType: 'storage',
+            plantName: meta.plantName,
+            country: meta.plantData?.country,
+            city: meta.plantData?.city,
+            accountName: meta.plantData?.accountName,
+            inverterPower: meta.plantData?.nominalPower,
+            treesSaved: meta.plantData?.tree,
+            coalSaved: meta.plantData?.coal,
+            ppv1: device?.statusData?.ppv1 ?? device?.statusData?.pPv1,
+            ppv2: device?.statusData?.ppv2 ?? device?.statusData?.pPv2,
+            gridPower: device?.statusData?.gridPower,
+            discharging,
+            charging,
+            stateOfCharge: device?.statusData?.capacity,
+            consumptionPower: device?.statusData?.loadPower,
+            rateVA: device?.statusData?.rateVA,
+            loadPercentage: device?.statusData?.loadPrecent,
+            staticTakenAt: device?.deviceData?.lastUpdateTime,
+            useEnergyToday: device?.totalData?.useEnergyToday,
+            useEnergyTotal: device?.totalData?.useEnergyTotal,
+            chargeToday: device?.totalData?.chargeToday,
+            chargeTotal: (parseInt(device?.totalData?.chargeTotal) || 0) / 1000,
+            eDischargeTotal: (parseInt(device?.totalData?.eDischargeTotal) || 0) / 1000,
+            eDischargeToday: device?.totalData?.eDischargeToday,
+            eToUserTotal: device?.totalData?.eToUserTotal,
+            eToUserToday: device?.totalData?.eToUserToday,
+            epvToday: device?.totalData?.epvToday,
+            epvTotal: (parseInt(device?.totalData?.epvTotal) || 0) / 1000,
+        };
+    },
+
+    /**
+     * Generic parser for types 'tlxh', 'tlx', and 'mix'
+     */
+    _parseInverterWithHistory: function (meta, sn, device, type) {
+        const h = device?.historyLast || {};
+        const s = device?.statusData || {};
+
+        const epvToday = ['epv1Today', 'epv2Today', 'epv3Today', 'epv4Today']
+        .map(k => parseInt(h[k]) || 0)
+        .reduce((a, b) => a + b, 0);
+
+        const importedFromGridToday = (s.pactouser || 0) / 1000;
+        const importedFromGridTotal = (h.elocalLoadToday || 0) - (h.eselfToday || 0);
+        const exportedToGridToday = s.pactogrid || 0;
+        const exportedToGridTotal = h.pacToGridTotal || 0;
+
+        return {
+            growattType: type,
+            plantName: meta.plantName,
+            country: meta.plantData?.country,
+            city: meta.plantData?.city,
+            accountName: meta.plantData?.accountName,
+            inverterPower: meta.plantData?.nominalPower,
+            treesSaved: meta.plantData?.tree,
+            coalSaved: meta.plantData?.coal,
+            ppv: s.ppv,
+            ppv1: s.ppv1 ?? s.pPv1,
+            ppv2: s.ppv2 ?? s.pPv2,
+            ppv3: s.ppv3 ?? s.pPv3,
+            ppv4: s.ppv4 ?? s.pPv4,
+            importFromGrid: s.pactouser,
+            exportToGrid: s.pactogrid,
+            discharging: s.pdisCharge,
+            charging: s.chargePower,
+            stateOfCharge: s.SOC,
+            consumptionPower: s.pLocalLoad,
+            staticTakenAt: device?.deviceData?.lastUpdateTime,
+            useEnergyToday: h.elocalLoadToday,
+            useEnergyTotal: h.elocalLoadTotal,
+            chargeToday: h.echargeToday,
+            chargeTotal: h.echargeTotal,
+            eDischargeTotal: h.edischargeTotal,
+            eDischargeToday: h.edischargeToday,
+            importedFromGridToday,
+            importedFromGridTotal,
+            exportedToGridToday,
+            exportedToGridTotal,
+            eToUserTotal: exportedToGridTotal,
+            eToUserToday: exportedToGridToday,
+            epvToday,
+            epvTotal: h.epvTotal
+        };
+    },
+
+    /**
+     * Custom parser for 'noah' type
+     */
+    _parseNoah: function (meta, sn, device) {
+        const h = device?.historyLast || {};
+        const d = device;
+        const s = device?.statusData || {};
+
+        const epvToday = ['epv1Today', 'epv2Today', 'epv3Today', 'epv4Today']
+        .map(k => parseInt(h[k]) || 0)
+        .reduce((a, b) => a + b, 0);
+
+        const power = parseInt(d?.historyLast?.totalBatteryPackChargingPower || 0);
+        const charging = power > 0 ? power : 0;
+        const discharging = power < 0 ? power : 0;
+
+        const exportedToGridTotal = (parseInt(h.esystemTotal || 0) - parseInt(h.eselfTotal || 0)) || 0;
+
+        return {
+            growattType: 'noah',
+            plantName: meta.plantName,
+            country: meta.plantData?.country,
+            city: meta.plantData?.city,
+            accountName: meta.plantData?.accountName,
+            inverterPower: meta.plantData?.nominalPower,
+            treesSaved: meta.plantData?.tree,
+            coalSaved: meta.plantData?.coal,
+            ppv: d?.historyLast?.ppv,
+            discharging,
+            charging,
+            stateOfCharge: d?.historyLast?.totalBatteryPackSoc,
+            consumptionPower: d?.historyLast?.pac,
+            staticTakenAt: d?.deviceData?.lastUpdateTime,
+            epvToday: d?.totalData?.eToday,
+            epvTotal: d?.totalData?.eTotal
+        };
+    },
+
+    getGrowattData: async function (payload) {
+        let growattData = [];
         const server = payload.usServer ? servers.us : servers.main;
 
-        const growatt = new api({ server: server })
-
-        let login = await growatt.login(payload.username, payload.password).catch(e => {
-            console.log(e)
+        const growatt = new api({
+            server: server
         })
-        //console.log('MMM-Growatt-Stats login: ', login)
-
-        let getAllPlantData = await growatt.getAllPlantData(options).catch(e => {
-            console.log(e)
-        })
+            const login = await this.retry(() => growatt.login(payload.username, payload.password));
+        const plantData = await this.retry(() => growatt.getAllPlantData(options));
 
         let logout = await growatt.logout().catch(e => {
             console.log(e)
         })
-        //console.log('MMM-Growatt-Stats logout:', logout)
 
-        var plantData = getAllPlantData;
+            if (!plantData) {
+                console.warn("No data returned from Growatt API.");
+                return;
+            }
 
-        if (payload.debug === true) {
-            fs.appendFile(growattlog, JSON.stringify(plantData, null, 2) + os.EOL, function (err) {
-                if (err) throw err;
-            })
+            if (payload.debug === true) {
+                fs.appendFile(growattlog, JSON.stringify(plantData, null, 2) + os.EOL, function (err) {
+                    if (err)
+                        throw err;
+                })
+            }
+
+            const parsed = this.deconstructPlantData(plantData, payload)
+
+            if (parsed.length > 1) {
+                growattData = parsed.filter(item => item.growattType === "noah");
+            } else {
+                growattData = parsed;
+            }
+
+            this.sendSocketNotification('GROWATT_DATA', growattData)
+    },
+
+    retry: async function (fn, retries = 3, delay = 1000) {
+        let lastError;
+        for (let i = 0; i < retries; i++) {
+            try {
+                return await fn();
+            } catch (e) {
+                lastError = e;
+                console.warn(`Retry attempt ${i + 1} failed: ${e.message}`);
+                if (i < retries - 1)
+                    await new Promise(res => setTimeout(res, delay * (i + 1)));
+            }
         }
-       
-        var parserResponse = this.deconstructPlantData(plantData, payload)
-
-        var growattDataParsed = plantDataFiltered;
-
-        this.sendSocketNotification('GROWATT_STATS_DATA', growattDataParsed)
+        throw lastError;
     },
 
     socketNotificationReceived: function (notification, payload) {
